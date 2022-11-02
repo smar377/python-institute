@@ -1,19 +1,17 @@
-class ExampleClass:
-    def __init__(self, val = 1):
-        self.first = val
+class I:
+    def __init__(self):
+        self.s = 'abc'
+        self.i = 0
 
-    def set_second(self, val):
-        self.second = val
+    def __iter__(self):
+        return self
 
+    def __next__(self):
+        if self.i == len(self.s):
+            raise StopIteration
+        v = self.s[self.i]
+        self.i += 1
+        return v
 
-example_object_1 = ExampleClass()
-example_object_2 = ExampleClass(2)
-
-example_object_2.set_second(3)
-
-example_object_3 = ExampleClass(4)
-example_object_3.third = 5
-
-print(example_object_1.__dict__)
-print(example_object_2.__dict__)
-print(example_object_3.__dict__)
+for x in I():
+    print(x, end='')
